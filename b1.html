@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        input[type=number] {
+            width: 50px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 10px 2px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            opacity: 0.8;
+        }
+        
+        #sum {
+            background-color: #4CAF50;
+        }
+        
+        #subtract {
+            background-color: #f44336;
+        }
+        
+        #multiply {
+            background-color: #008CBA;
+        }
+        
+        #divide {
+            background-color: #e7e700;
+        }
+        
+        #reset {
+            background-color: #555555;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="number" id="A" placeholder="A">
+    <input type="number" id="B" placeholder="B">
+    <br>
+    <button id="sum" onclick="calculate('SUM')">SUM</button>
+    <button id="subtract" onclick="calculate('SUBTRACT')">SUBTRACT</button>
+    <button id="multiply" onclick="calculate('MULTIPLY')">MULTIPLY</button>
+    <button id="divide" onclick="calculate('DIVIDE')">DIVIDE</button>
+    <button id="reset" onclick="reset()">RESET</button>
+    <p id="result"></p>
+    <script>
+        function calculate(operation) {
+            var A = document.getElementById('A').value;
+            var B = document.getElementById('B').value;
+            if (isNaN(A) || isNaN(B)) {
+                alert('Vui lòng nhập số hợp lệ!');
+                return;
+            }
+            A = Number(A);
+            B = Number(B);
+            var result;
+            switch (operation) {
+                case 'SUM':
+                    result = A + B;
+                    break;
+                case 'SUBTRACT':
+                    result = A - B;
+                    break;
+                case 'MULTIPLY':
+                    result = A * B;
+                    break;
+                case 'DIVIDE':
+                    if (B != 0) {
+                        result = A / B;
+                    } else {
+                        alert('Không thể chia cho 0!');
+                        return;
+                    }
+                    break;
+            }
+            document.getElementById('result').innerHTML = 'Kết quả: ' + result;
+        }
+
+        function reset() {
+            document.getElementById('A').value = '';
+            document.getElementById('B').value = '';
+            document.getElementById('result').innerHTML = '';
+        }
+    </script>
+</body>
+
+</html>
